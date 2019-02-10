@@ -21,6 +21,7 @@ be found at [https://hexdocs.pm/csvread](https://hexdocs.pm/csvread).
 
 Example
 index.html.eex
+```html
 <%
 [head | tail] = Csvread.stream("zip_utf8.csv")
 res = Csvread.csv_struct(head, tail)
@@ -42,3 +43,4 @@ recode = Csvread.map(res)
 </tr>
 <% end %>
 </table>
+```
