@@ -19,3 +19,26 @@ Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_do
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at [https://hexdocs.pm/csvread](https://hexdocs.pm/csvread).
 
+Example
+index.html.eex
+<%
+[head | tail] = Csvread.stream("zip_utf8.csv")
+res = Csvread.csv_struct(head, tail)
+columns = res.columns
+recode = Csvread.map(res)
+%>
+
+<table border="1">
+<tr>
+<%= for column <- columns do %>
+<th><%= column %></th>
+<% end %>
+</tr>
+<%= for recode_row <- recode do %>
+<tr>
+<%= for column <- columns do %>
+<td><%= Map.get(recode_row,column) %></td>
+<% end %>
+</tr>
+<% end %>
+</table>
